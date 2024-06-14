@@ -163,7 +163,7 @@ nav ul .nav-center {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     align-items: center;
     padding: 20px 0;
 }
