@@ -39,11 +39,11 @@
             width: 50px;
         }
 
-        .memo{
-            width: 50px;
+        .memo-memo{
+            width: 60%;
         }
 
-        .tugas{
+        .task-tugas{
             width: 30%;
         }
 
@@ -51,6 +51,7 @@
             padding: 8px;
             background-color: transparent !important;
             height: 30px;
+            vertical-align: middle; /* Ensure vertical alignment to middle */
         }
 
         table.dataTable {
@@ -173,48 +174,48 @@
                 <table id="attendance" class="display">
                     <thead>
                         <tr>
-                            <th class="nomor">Nomor</th>
-                            <th class="tanggal">Tanggal</th>
-                            <th class="kehadiran">Kehadiran</th>
-                            <th class="status">Status</th>
+                            <th class="attend-nomor">Nomor</th>
+                            <th class="attend-tanggal">Tanggal</th>
+                            <th class="attend-kehadiran">Kehadiran</th>
+                            <th class="attend-status">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="nomor">1</td>
-                            <td class="tanggal">2024-06-15 08:00:00</td>
-                            <td class="kehadiran">Masuk</td>
-                            <td class="status"><span class="status-tepat-waktu">Tepat Waktu</span></td>
+                            <td class="attend-nomor">1</td>
+                            <td class="attend-tanggal">2024-06-15 08:00:00</td>
+                            <td class="attend-kehadiran">Masuk</td>
+                            <td class="attend-status"><span class="status-tepat-waktu">Tepat Waktu</span></td>
                         </tr>
                         <tr>
-                            <td class="nomor">2</td>
-                            <td class="tanggal">2024-06-16 08:15:00</td>
-                            <td class="kehadiran">Masuk</td>
-                            <td class="status"><span class="status-terlambat">Terlambat</span></td>
+                            <td class="attend-nomor">2</td>
+                            <td class="attend-tanggal">2024-06-16 08:15:00</td>
+                            <td class="attend-kehadiran">Masuk</td>
+                            <td class="attend-status"><span class="status-terlambat">Terlambat</span></td>
                         </tr>
                         <tr>
-                            <td class="nomor">3</td>
-                            <td class="tanggal">2024-06-17</td>
-                            <td class="kehadiran">Alfa</td>
-                            <td class="status"></td>
+                            <td class="attend-nomor">3</td>
+                            <td class="attend-tanggal">2024-06-17</td>
+                            <td class="attend-kehadiran">Alfa</td>
+                            <td class="attend-status"></td>
                         </tr>
                         <tr>
-                            <td class="nomor">4</td>
-                            <td class="tanggal">2024-06-18</td>
-                            <td class="kehadiran">Cuti</td>
-                            <td class="status"></td>
+                            <td class="attend-nomor">4</td>
+                            <td class="attend-tanggal">2024-06-18</td>
+                            <td class="attend-kehadiran">Cuti</td>
+                            <td class="attend-status"></td>
                         </tr>
                         <tr>
-                            <td class="nomor">5</td>
-                            <td class="tanggal">2024-06-19 07:55:00</td>
-                            <td class="kehadiran">Masuk</td>
-                            <td class="status"><span class="status-tepat-waktu">Tepat Waktu</span></td>
+                            <td class="attend-nomor">5</td>
+                            <td class="attend-tanggal">2024-06-19 07:55:00</td>
+                            <td class="attend-kehadiran">Masuk</td>
+                            <td class="attend-status"><span class="status-tepat-waktu">Tepat Waktu</span></td>
                         </tr>
                         <tr>
-                            <td class="nomor">6</td>
-                            <td class="tanggal">2024-06-20 08:20:00</td>
-                            <td class="kehadiran">Masuk</td>
-                            <td class="status"><span class="status-terlambat">Terlambat</span></td>
+                            <td class="attend-nomor">6</td>
+                            <td class="attend-tanggal">2024-06-20 08:20:00</td>
+                            <td class="attend-kehadiran">Masuk</td>
+                            <td class="attend-status"><span class="status-terlambat">Terlambat</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -238,55 +239,55 @@
                 <table id="task" class="display">
                     <thead>
                         <tr>
-                            <th class="nomor">Nomor</th>
-                            <th class="tugas">Tugas</th>
-                            <th class="deadline">Deadline</th>
-                            <th class="contactPerson">Contact Person</th>
-                            <th class="status">Status</th>
+                            <th class="task-nomor">Nomor</th>
+                            <th class="task-tugas">Tugas</th>
+                            <th class="task-deadline">Deadline</th>
+                            <th class="task-contactPerson">Contact Person</th>
+                            <th class="task-status">Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="nomor">1</td>
-                            <td class="tugas">Kerjakan Invoice No. 1 - 50</td>
-                            <td class="deadline">2024-06-15 10:00:00</td>
-                            <td class="contactPerson">John Doe</td>
-                            <td class="status">Not Taken</td>
+                            <td class="task-nomor">1</td>
+                            <td class="task-tugas">Kerjakan Invoice No. 1 - 50</td>
+                            <td class="task-deadline">2024-06-15 10:00:00</td>
+                            <td class="task-contactPerson">John Doe</td>
+                            <td class="task-status">Not Taken</td>
                         </tr>
                         <tr>
-                            <td class="nomor">2</td>
-                            <td class="tugas">Tanda Tangan Invoice PT Anker</td>
-                            <td class="deadline">2024-06-16 12:00:00</td>
-                            <td class="contactPerson">Jane Smith</td>
-                            <td class="status">On Progress</td>
+                            <td class="task-nomor">2</td>
+                            <td class="task-tugas">Tanda Tangan Invoice PT Anker</td>
+                            <td class="task-deadline">2024-06-16 12:00:00</td>
+                            <td class="task-contactPerson">Jane Smith</td>
+                            <td class="task-status">On Progress</td>
                         </tr>
                         <tr>
-                            <td class="nomor">3</td>
-                            <td class="tugas">Bertemu Jajaran Direksi PT Furin</td>
-                            <td class="deadline">2024-06-17 14:00:00</td>
-                            <td class="contactPerson">Mike Johnson</td>
-                            <td class="status">Pending</td>
+                            <td class="task-nomor">3</td>
+                            <td class="task-tugas">Bertemu Jajaran Direksi PT Furin</td>
+                            <td class="task-deadline">2024-06-17 14:00:00</td>
+                            <td class="task-contactPerson">Mike Johnson</td>
+                            <td class="task-status">Pending</td>
                         </tr>
                         <tr>
-                            <td class="nomor">4</td>
-                            <td class="tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
-                            <td class="deadline">2024-06-18 16:00:00</td>
-                            <td class="contactPerson">Emily Davis</td>
-                            <td class="status">Done</td>
+                            <td class="task-nomor">4</td>
+                            <td class="task-tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
+                            <td class="task-deadline">2024-06-18 16:00:00</td>
+                            <td class="task-contactPerson">Emily Davis</td>
+                            <td class="task-status">Done</td>
                         </tr>
                         <tr>
-                            <td class="nomor">5</td>
-                            <td class="tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
-                            <td class="deadline">2024-06-18 16:00:00</td>
-                            <td class="contactPerson">Emily Davis</td>
-                            <td class="status">Done</td>
+                            <td class="task-nomor">5</td>
+                            <td class="task-tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
+                            <td class="task-deadline">2024-06-18 16:00:00</td>
+                            <td class="task-contactPerson">Emily Davis</td>
+                            <td class="task-status">Done</td>
                         </tr>
                         <tr>
-                            <td class="nomor">4</td>
-                            <td class="tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
-                            <td class="deadline">2024-06-18 16:00:00</td>
-                            <td class="contactPerson">Emily Davis</td>
-                            <td class="status">Done</td>
+                            <td class="task-nomor">4</td>
+                            <td class="task-tugas">Jemput Direktur Perusahaan di Stasiun Cawang</td>
+                            <td class="task-deadline">2024-06-18 16:00:00</td>
+                            <td class="task-contactPerson">Emily Davis</td>
+                            <td class="task-status">Done</td>
                         </tr>
                     </tbody>
                 </table>
@@ -309,41 +310,41 @@
                 <table id="memo" class="display">
                     <thead>
                         <tr>
-                            <th class="nomor">Nomor</th>
-                            <th class="memo">Memo</th>
-                            <th class="tanggal">Tanggal</th>
+                            <th class="memo-nomor">Nomor</th>
+                            <th class="memo-memo">Memo</th>
+                            <th class="memo-tanggal">Tanggal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="nomor">1</td>
-                            <td class="memo">Meeting dengan tim marketing untuk membahas strategi Q3.</textarea></td>
-                            <td class="tanggal">2024-06-15 10:00:00</td>
+                            <td class="memo-nomor">1</td>
+                            <td class="memo-memo">Meeting dengan tim marketing untuk membahas strategi Q3.</textarea></td>
+                            <td class="memo-tanggal">2024-06-15 10:00:00</td>
                         </tr>
                         <tr>
-                            <td class="nomor">2</td>
-                            <td class="memo">Mengirim laporan bulanan ke manajemen.</textarea></td>
-                            <td class="tanggal">2024-06-16 15:00:00</td>
+                            <td class="memo-nomor">2</td>
+                            <td class="memo-memo">Mengirim laporan bulanan ke manajemen.</textarea></td>
+                            <td class="memo-tanggal">2024-06-16 15:00:00</td>
                         </tr>
                         <tr>
-                            <td class="nomor">3</td>
-                            <td class="memo">Review anggaran untuk proyek baru.</textarea></td>
-                            <td class="tanggal">2024-06-17 09:00:00</td>
+                            <td class="memo-nomor">3</td>
+                            <td class="memo-memo">Review anggaran untuk proyek baru.</textarea></td>
+                            <td class="memo-tanggal">2024-06-17 09:00:00</td>
                         </tr>
                         <tr>
-                            <td class="nomor">4</td>
-                            <td class="memo">Mengadakan workshop pengembangan keterampilan.</textarea></td>
-                            <td class="tanggal">2024-06-18 14:00:00</td>
+                            <td class="memo-nomor">4</td>
+                            <td class="memo-memo">Mengadakan workshop pengembangan keterampilan.</textarea></td>
+                            <td class="memo-tanggal">2024-06-18 14:00:00</td>
                         </tr>
                         <tr>
-                            <td class="nomor">5</td>
-                            <td class="memo">Menyelesaikan audit internal.</textarea></td>
-                            <td class="tanggal">2024-06-19 11:00:00</td>
+                            <td class="memo-nomor">5</td>
+                            <td class="memo-memo">Menyelesaikan audit internal.</textarea></td>
+                            <td class="memo-tanggal">2024-06-19 11:00:00</td>
                         </tr>
                         <tr>
-                            <td class="nomor">6</td>
-                            <td class="memo">Meninjau proposal dari vendor baru.</textarea></td>
-                            <td class="tanggal">2024-06-20 16:00:00</td>
+                            <td class="memo-nomor">6</td>
+                            <td class="memo-memo">Meninjau proposal dari vendor baru.</textarea></td>
+                            <td class="memo-tanggal">2024-06-20 16:00:00</td>
                         </tr>
                     </tbody>
                 </table>
@@ -353,6 +354,48 @@
                 <script>
                     $(document).ready(function() {
                         $('#memo').DataTable({
+                            paging: false,         // Disable paging
+                            searching: false,      // Disable searching
+                            info: false,           // Disable info text
+                            lengthChange: false    // Disable the "Show x entries" dropdown
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="info employees">
+        <h3 class="sectionTitle">Employees Info</h3>
+        <div class="row">
+            <div class="card list">
+                <h4>Daftar Karyawan</h4>
+                <table id="list" class="display">
+                    <thead>
+                        <tr>
+                            <th class="list-id">ID</th>
+                            <th class="list-nama">Nama</th>
+                            <th class="list-email">Email</th>
+                            <th class="list-password">Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($employees as $employee)
+                            <tr>
+                                <td class="list-id">{{ $employee["id"] }}</td>
+                                <td class="list-nama"><span><img class="employeeProfile" src="{{ URL::asset('/images/user_profile/Ranmaru Mori.jpg') }}" alt="Ranmaru Mori" height="45px"></span> <span>{{ $employee["name"] }}</span></td>
+                                <td class="list-email">{{ $employee["email"] }}</td>
+                                <td class="list-password">{{ $employee["password"] }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+                <script>
+                    $(document).ready(function() {
+                        $('#list').DataTable({
                             paging: false,         // Disable paging
                             searching: false,      // Disable searching
                             info: false,           // Disable info text
