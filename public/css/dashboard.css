@@ -360,10 +360,20 @@ nav ul .nav-center {
     border: 3px solid rgb(0, 65, 211);
     display: flex;
     flex-direction: column;
-    height: 375px;
+    height: 450px;
 }
 
 .card.list h4{
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.card.list .cardHeader{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.card.list .cardHeader h4{
     margin: 0 0 10px 0;
     font-weight: 600;
 }
@@ -422,4 +432,29 @@ nav ul .nav-center {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Ubah ukuran teks untuk elemen-elemen datatable */
+.card.list .dataTables_length,
+.card.list .dataTables_filter,
+.card.list .dataTables_info,
+.card.list .dataTables_paginate {
+    font-size: 12px; /* Anda bisa mengatur ukuran yang diinginkan di sini */
+}
+
+/* Ubah ukuran elemen input dan tombol untuk filter dan pagination */
+.card.list .dataTables_filter input,
+.card.list .dataTables_paginate .paginate_button {
+    font-size: 12px;
+    padding: 5px; /* Anda bisa mengatur padding yang diinginkan di sini */
+}
+
+/* Ubah ukuran elemen select untuk show entries */
+.card.list .dataTables_length select {
+    font-size: 12px;
+    padding: 2px; /* Anda bisa mengatur padding yang diinginkan di sini */
+}
+
+.card.list .dataTables_filter {
+    margin: 7px 0 20px; /* Sesuaikan nilai margin sesuai kebutuhan Anda */
 }

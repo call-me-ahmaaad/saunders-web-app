@@ -60,7 +60,7 @@ class EmployeeController extends Controller
             'gender' => $request->gender,
         ]);
 
-        return redirect()->route('create')->with('status', 'User created successfully.');
+        return redirect()->route('dashboard')->with('status', 'User created successfully.');
     }
 
     public function destroy(User $employee)

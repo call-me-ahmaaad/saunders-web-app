@@ -53,7 +53,7 @@
             padding: 8px;
             background-color: transparent !important;
             height: 30px;
-            vertical-align: middle;
+            /* vertical-align: middle; */
             /* Ensure vertical alignment to middle */
         }
 
@@ -383,207 +383,211 @@
         </div>
     </div>
 
-    <div class="info employees">
-        <h3 class="sectionTitle">Employees Info</h3>
-        <div class="row">
-            <div class="card list">
-                <h4>Daftar Karyawan</h4>
-                <table id="list" class="display">
-                    <thead>
-                        <tr>
-                            <th class="list-id">ID</th>
-                            <th class="list-nama">Nama</th>
-                            <th class="list-email">Email</th>
-                            <th class="list-gender">Gender</th>
-                            <th class="list-department">Department</th>
-                            <th class="list-position">Position</th>
-                            <th class="list-phone_number">Phone Number</th>
-                            <th class="list-actions">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="employeeTableBody">
-                        @foreach ($employees as $employee)
-                            <tr data-id="{{ $employee->id }}">
-                                <td class="list-id">{{ $employee->id }}</td>
-                                <td class="list-nama">
-                                    <span>
-                                        @if ($employee->profile_photo_path)
-                                            <img class="employeeProfile"
-                                                src="{{ asset('storage/' . $employee->profile_photo_path) }}"
-                                                alt="{{ $employee->name }}" height="45px">
-                                        @else
-                                            @php
-                                                $defaultPhoto = 'images/default_profile.png';
-                                                if ($employee->gender == 'Male') {
-                                                    $defaultPhoto =
-                                                        'images/user_profile/Default Male Photo Profile.jpg';
-                                                } elseif ($employee->gender == 'Female') {
-                                                    $defaultPhoto =
-                                                        'images/user_profile/Default Female Photo Profile.jpg';
-                                                }
-                                            @endphp
-                                            <img class="employeeProfile" src="{{ URL::asset($defaultPhoto) }}"
-                                                alt="Default Profile" height="45px">
-                                        @endif
-                                    </span>
-                                    <span>{{ $employee['name'] }}</span>
-                                </td>
-                                <td class="list-email">{{ $employee->email }}</td>
-                                <td class="list-gender">{{ $employee->gender }}</td>
-                                <td class="list-department">{{ $employee->department }}</td>
-                                <td class="list-position">{{ $employee->position }}</td>
-                                <td class="list-phone_number">
-                                    {{ \App\Helpers\PhoneNumberHelper::format($employee->phone_number) }}</td>
-                                <td class="list-actions">
-                                    <button class="deleteBtn" data-id="{{ $employee->id }}"
-                                        data-name="{{ $employee->name }}" data-email="{{ $employee->email }}"
-                                        data-gender="{{ $employee->gender }}"
-                                        data-department="{{ $employee->department }}"
-                                        data-position="{{ $employee->position }}"
-                                        data-phone_number="{{ $employee->phone_number }}">Delete</button>
-                                </td>
+    @if (Auth::user()->position == 'Manager')
+        <div class="info employees">
+            <h3 class="sectionTitle">Employees Info</h3>
+            <div class="row">
+                <div class="card list">
+                    <div class="cardHeader">
+                        <h4>Info User</h4>
+                        <div>
+                            <a href="{{ route('create') }}">Add User</a>
+                            <a href="{{ route('create') }}">Lainnya</a>
+                        </div>
+                    </div>
+                    <table id="list" class="display">
+                        <thead>
+                            <tr>
+                                <th class="list-id">ID</th>
+                                <th class="list-nama">Nama</th>
+                                <th class="list-email">Email</th>
+                                <th class="list-gender">Gender</th>
+                                <th class="list-department">Department</th>
+                                <th class="list-position">Position</th>
+                                <th class="list-phone_number">Phone Number</th>
+                                <th class="list-actions">Actions</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody id="employeeTableBody">
+                            @foreach ($employees as $employee)
+                                <tr data-id="{{ $employee->id }}">
+                                    <td class="list-id">{{ $employee->id }}</td>
+                                    <td class="list-nama">
+                                        <span>
+                                            @if ($employee->profile_photo_path)
+                                                <img class="employeeProfile"
+                                                    src="{{ asset('storage/' . $employee->profile_photo_path) }}"
+                                                    alt="{{ $employee->name }}" height="45px">
+                                            @else
+                                                @php
+                                                    $defaultPhoto = 'images/default_profile.png';
+                                                    if ($employee->gender == 'Male') {
+                                                        $defaultPhoto =
+                                                            'images/user_profile/Default Male Photo Profile.jpg';
+                                                    } elseif ($employee->gender == 'Female') {
+                                                        $defaultPhoto =
+                                                            'images/user_profile/Default Female Photo Profile.jpg';
+                                                    }
+                                                @endphp
+                                                <img class="employeeProfile" src="{{ URL::asset($defaultPhoto) }}"
+                                                    alt="Default Profile" height="45px">
+                                            @endif
+                                        </span>
+                                        <span>{{ $employee['name'] }}</span>
+                                    </td>
+                                    <td class="list-email">{{ $employee->email }}</td>
+                                    <td class="list-gender">{{ $employee->gender }}</td>
+                                    <td class="list-department">{{ $employee->department }}</td>
+                                    <td class="list-position">{{ $employee->position }}</td>
+                                    <td class="list-phone_number">
+                                        {{ \App\Helpers\PhoneNumberHelper::format($employee->phone_number) }}</td>
+                                    <td class="list-actions">
+                                        <button class="deleteBtn" data-id="{{ $employee->id }}"
+                                            data-name="{{ $employee->name }}" data-email="{{ $employee->email }}"
+                                            data-gender="{{ $employee->gender }}"
+                                            data-department="{{ $employee->department }}"
+                                            data-position="{{ $employee->position }}"
+                                            data-phone_number="{{ $employee->phone_number }}">Delete</button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                <!-- Pop Up Form -->
-                <div id="formPopup" class="popup">
-                    <div class="popup-content">
-                        <span class="close-btn" id="closeFormBtn">&times;</span>
-                        <form id="confirmDeleteForm" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <h2>Delete Employee</h2>
-                            <p>Are you sure you want to delete this employee?</p>
-                            <div id="employeeInfo">
-                                <p><strong>Name:</strong> <span id="employeeName"></span></p>
-                                <p><strong>Email:</strong> <span id="employeeEmail"></span></p>
-                                <p><strong>Gender:</strong> <span id="employeeGender"></span></p>
-                                <p><strong>Department:</strong> <span id="employeeDepartment"></span></p>
-                                <p><strong>Position:</strong> <span id="employeePosition"></span></p>
-                                <p><strong>Phone Number:</strong> <span id="employeePhoneNumber"></span></p>
-                            </div>
-                            <button type="submit" id="confirmDeleteBtn">Delete</button>
-                        </form>
+                    <!-- Pop Up Form -->
+                    <div id="formPopup" class="popup">
+                        <div class="popup-content">
+                            <span class="close-btn" id="closeFormBtn">&times;</span>
+                            <form id="confirmDeleteForm" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <h2>Delete Employee</h2>
+                                <p>Are you sure you want to delete this employee?</p>
+                                <div id="employeeInfo">
+                                    <p><strong>Name:</strong> <span id="employeeName"></span></p>
+                                    <p><strong>Email:</strong> <span id="employeeEmail"></span></p>
+                                    <p><strong>Gender:</strong> <span id="employeeGender"></span></p>
+                                    <p><strong>Department:</strong> <span id="employeeDepartment"></span></p>
+                                    <p><strong>Position:</strong> <span id="employeePosition"></span></p>
+                                    <p><strong>Phone Number:</strong> <span id="employeePhoneNumber"></span></p>
+                                </div>
+                                <button type="submit" id="confirmDeleteBtn">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Pop Up Message -->
-                <div id="messagePopup" class="popup">
-                    <div class="popup-content">
-                        <span class="close-btn" id="closeMessageBtn">&times;</span>
-                        <p id="messageText"></p>
+                    <!-- Pop Up Message -->
+                    <div id="messagePopup" class="popup">
+                        <div class="popup-content">
+                            <span class="close-btn" id="closeMessageBtn">&times;</span>
+                            <p id="messageText"></p>
+                        </div>
                     </div>
-                </div>
 
-                <script>
-                    $(document).ready(function() {
-                        $('#list').DataTable({
-                            paging: false, // Disable paging
-                            searching: false, // Disable searching
-                            info: false, // Disable info text
-                            lengthChange: false // Disable the "Show x entries" dropdown
-                        });
-
-                        function fetchEmployeeData() {
-                            $.ajax({
-                                url: '{{ route('employees.list') }}', // Add a route that returns employee data as JSON
-                                method: 'GET',
-                                success: function(response) {
-                                    $('#employeeTableBody').empty();
-                                    response.employees.forEach(function(employee) {
-                                        let defaultPhoto = 'images/default_profile.png';
-                                        if (employee.gender == 'Male') {
-                                            defaultPhoto =
-                                                'images/user_profile/Default Male Photo Profile.jpg';
-                                        } else if (employee.gender == 'Female') {
-                                            defaultPhoto =
-                                                'images/user_profile/Default Female Photo Profile.jpg';
-                                        }
-
-                                        let profilePhoto = employee.profile_photo_path ?
-                                            '{{ asset('storage') }}/' + employee.profile_photo_path :
-                                            '{{ URL::asset('') }}' + defaultPhoto;
-
-                                        let employeeRow = `
-                                            <tr data-id="${employee.id}">
-                                                <td class="list-id">${employee.id}</td>
-                                                <td class="list-nama">
-                                                    <span>
-                                                        <img class="employeeProfile" src="${profilePhoto}" alt="${employee.name}" height="45px">
-                                                    </span>
-                                                    <span>${employee.name}</span>
-                                                </td>
-                                                <td class="list-email">${employee.email}</td>
-                                                <td class="list-gender">${employee.gender}</td>
-                                                <td class="list-department">${employee.department}</td>
-                                                <td class="list-position">${employee.position}</td>
-                                                <td class="list-phone_number">${employee.formatted_phone_number}</td>
-                                                <td class="list-actions">
-                                                    <button class="deleteBtn" data-id="${employee.id}"
-                                                        data-name="${employee.name}" data-email="${employee.email}"
-                                                        data-gender="${employee.gender}"
-                                                        data-department="${employee.department}"
-                                                        data-position="${employee.position}"
-                                                        data-phone_number="${employee.phone_number}">Delete</button>
-                                                </td>
-                                            </tr>`;
-                                        $('#employeeTableBody').append(employeeRow);
-                                    });
-
-                                    // Reinitialize delete button event listeners
-                                    initializeDeleteButtons();
-                                },
-                                error: function(xhr, status, error) {
-                                    console.error('Error fetching employee data:', error);
-                                }
-                            });
-                        }
-
-                        function initializeDeleteButtons() {
-                            $('.deleteBtn').on('click', function() {
-                                var employeeId = $(this).data('id');
-                                var employeeName = $(this).data('name');
-                                var employeeEmail = $(this).data('email');
-                                var employeeGender = $(this).data('gender');
-                                var employeeDepartment = $(this).data('department');
-                                var employeePosition = $(this).data('position');
-                                var employeePhoneNumber = $(this).data('phone_number');
-
-                                $('#employeeName').text(employeeName);
-                                $('#employeeEmail').text(employeeEmail);
-                                $('#employeeGender').text(employeeGender);
-                                $('#employeeDepartment').text(employeeDepartment);
-                                $('#employeePosition').text(employeePosition);
-                                $('#employeePhoneNumber').text(employeePhoneNumber);
-
-                                var deleteUrl = '{{ route('employees.destroy', ':id') }}';
-                                deleteUrl = deleteUrl.replace(':id', employeeId);
-                                $('#confirmDeleteForm').attr('action', deleteUrl);
-
-                                // Show the popup with animation
-                                $('#formPopup').fadeIn();
-                                $('#formPopup').css('display', 'flex'); // Use flex to position
-
-                                // Add 'active' class for CSS animation
-                                setTimeout(function() {
-                                    $('#formPopup .popup-content').addClass('active');
-                                }, 50); // Slight delay to ensure CSS transition applies
+                    <script>
+                        $(document).ready(function() {
+                            // Initialize DataTables with pagination settings
+                            var table = $('#list').DataTable({
+                                "pageLength": 5, // Set maximum 5 rows per page
+                                "lengthChange": false, // Disable the "Show x entries" dropdown
+                                "paging": true, // Enable pagination
+                                "ordering": true, // Enable column ordering
+                                "info": true, // Show information about the table
+                                "searching": true // Enable searching/filtering
                             });
 
-                            $('#closeFormBtn').on('click', function() {
-                                // Remove 'active' class for CSS animation
-                                $('#formPopup .popup-content').removeClass('active');
+                            function fetchEmployeeData() {
+                                $.ajax({
+                                    url: '{{ route('employees.list') }}', // Add a route that returns employee data as JSON
+                                    method: 'GET',
+                                    success: function(response) {
+                                        // Save the current pagination state
+                                        var currentPage = table.page();
 
-                                // Wait a bit before hiding the popup
-                                setTimeout(function() {
-                                    $('#formPopup').fadeOut();
-                                }, 300); // Adjust to match CSS transition duration
-                            });
+                                        table.clear(); // Clear the current data in the table
+                                        response.employees.forEach(function(employee) {
+                                            let defaultPhoto = 'images/default_profile.png';
+                                            if (employee.gender == 'Male') {
+                                                defaultPhoto =
+                                                    'images/user_profile/Default Male Photo Profile.jpg';
+                                            } else if (employee.gender == 'Female') {
+                                                defaultPhoto =
+                                                    'images/user_profile/Default Female Photo Profile.jpg';
+                                            }
 
-                            $(window).on('click', function(event) {
-                                if (event.target == $('#formPopup')[0]) {
+                                            let profilePhoto = employee.profile_photo_path ?
+                                                '{{ asset('storage') }}/' + employee.profile_photo_path :
+                                                '{{ URL::asset('') }}' + defaultPhoto;
+
+                                            let employeeRow = `
+                                                <tr data-id="${employee.id}">
+                                                    <td class="list-id">${employee.id}</td>
+                                                    <td class="list-nama">
+                                                        <span>
+                                                            <img class="employeeProfile" src="${profilePhoto}" alt="${employee.name}" height="45px">
+                                                        </span>
+                                                        <span>${employee.name}</span>
+                                                    </td>
+                                                    <td class="list-email">${employee.email}</td>
+                                                    <td class="list-gender">${employee.gender}</td>
+                                                    <td class="list-department">${employee.department}</td>
+                                                    <td class="list-position">${employee.position}</td>
+                                                    <td class="list-phone_number">${employee.formatted_phone_number}</td>
+                                                    <td class="list-actions">
+                                                        <button class="deleteBtn" data-id="${employee.id}"
+                                                            data-name="${employee.name}" data-email="${employee.email}"
+                                                            data-gender="${employee.gender}"
+                                                            data-department="${employee.department}"
+                                                            data-position="${employee.position}"
+                                                            data-phone_number="${employee.phone_number}">Delete</button>
+                                                    </td>
+                                                </tr>`;
+                                            table.row.add($(employeeRow)); // Add the new row to the DataTable
+                                        });
+                                        table.draw(); // Redraw the DataTable with the new data
+
+                                        // Restore the pagination state
+                                        table.page(currentPage).draw(false);
+                                        initializeDeleteButtons(); // Reinitialize delete button event listeners
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('Error fetching employee data:', error);
+                                    }
+                                });
+                            }
+
+                            function initializeDeleteButtons() {
+                                $('.deleteBtn').on('click', function() {
+                                    var employeeId = $(this).data('id');
+                                    var employeeName = $(this).data('name');
+                                    var employeeEmail = $(this).data('email');
+                                    var employeeGender = $(this).data('gender');
+                                    var employeeDepartment = $(this).data('department');
+                                    var employeePosition = $(this).data('position');
+                                    var employeePhoneNumber = $(this).data('phone_number');
+
+                                    $('#employeeName').text(employeeName);
+                                    $('#employeeEmail').text(employeeEmail);
+                                    $('#employeeGender').text(employeeGender);
+                                    $('#employeeDepartment').text(employeeDepartment);
+                                    $('#employeePosition').text(employeePosition);
+                                    $('#employeePhoneNumber').text(employeePhoneNumber);
+
+                                    var deleteUrl = '{{ route('employees.destroy', ':id') }}';
+                                    deleteUrl = deleteUrl.replace(':id', employeeId);
+                                    $('#confirmDeleteForm').attr('action', deleteUrl);
+
+                                    // Show the popup with animation
+                                    $('#formPopup').fadeIn();
+                                    $('#formPopup').css('display', 'flex'); // Use flex to position
+
+                                    // Add 'active' class for CSS animation
+                                    setTimeout(function() {
+                                        $('#formPopup .popup-content').addClass('active');
+                                    }, 50); // Slight delay to ensure CSS transition applies
+                                });
+
+                                $('#closeFormBtn').on('click', function() {
                                     // Remove 'active' class for CSS animation
                                     $('#formPopup .popup-content').removeClass('active');
 
@@ -591,66 +595,66 @@
                                     setTimeout(function() {
                                         $('#formPopup').fadeOut();
                                     }, 300); // Adjust to match CSS transition duration
-                                }
-                            });
+                                });
 
-                            $('#confirmDeleteForm').on('submit', function(event) {
-                                event.preventDefault(); // Prevent default form submission
-
-                                var form = $(this);
-                                var url = form.attr('action');
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: url,
-                                    data: form.serialize(),
-                                    success: function(response) {
-                                        // Hide the form popup
+                                $(window).on('click', function(event) {
+                                    if (event.target == $('#formPopup')[0]) {
+                                        // Remove 'active' class for CSS animation
                                         $('#formPopup .popup-content').removeClass('active');
+
+                                        // Wait a bit before hiding the popup
                                         setTimeout(function() {
                                             $('#formPopup').fadeOut();
-                                        }, 300);
-
-                                        // Show the message popup
-                                        $('#messageText').text('Employee has been successfully deleted.');
-                                        $('#messagePopup').fadeIn();
-                                        $('#messagePopup').css('display', 'flex');
-
-                                        // Add 'active' class for CSS animation
-                                        setTimeout(function() {
-                                            $('#messagePopup .popup-content').addClass('active');
-                                        }, 50);
-
-                                        // Hide the message after a few seconds
-                                        setTimeout(function() {
-                                            $('#messagePopup .popup-content').removeClass('active');
-                                            setTimeout(function() {
-                                                $('#messagePopup').fadeOut();
-                                            }, 300);
-                                        }, 3000); // Adjust the timing as needed
-
-                                        // Fetch updated data
-                                        fetchEmployeeData();
-                                    },
-                                    error: function(xhr, status, error) {
-                                        // Handle errors if any
-                                        console.error('Error deleting employee:', error);
+                                        }, 300); // Adjust to match CSS transition duration
                                     }
                                 });
-                            });
 
-                            $('#closeMessageBtn').on('click', function() {
-                                // Remove 'active' class for CSS animation
-                                $('#messagePopup .popup-content').removeClass('active');
+                                $('#confirmDeleteForm').on('submit', function(event) {
+                                    event.preventDefault(); // Prevent default form submission
 
-                                // Wait a bit before hiding the popup
-                                setTimeout(function() {
-                                    $('#messagePopup').fadeOut();
-                                }, 300); // Adjust to match CSS transition duration
-                            });
+                                    var form = $(this);
+                                    var url = form.attr('action');
 
-                            $(window).on('click', function(event) {
-                                if (event.target == $('#messagePopup')[0]) {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: url,
+                                        data: form.serialize(),
+                                        success: function(response) {
+                                            // Hide the form popup
+                                            $('#formPopup .popup-content').removeClass('active');
+                                            setTimeout(function() {
+                                                $('#formPopup').fadeOut();
+                                            }, 300);
+
+                                            // Show the message popup
+                                            $('#messageText').text('Employee has been successfully deleted.');
+                                            $('#messagePopup').fadeIn();
+                                            $('#messagePopup').css('display', 'flex');
+
+                                            // Add 'active' class for CSS animation
+                                            setTimeout(function() {
+                                                $('#messagePopup .popup-content').addClass('active');
+                                            }, 50);
+
+                                            // Hide the message after a few seconds
+                                            setTimeout(function() {
+                                                $('#messagePopup .popup-content').removeClass('active');
+                                                setTimeout(function() {
+                                                    $('#messagePopup').fadeOut();
+                                                }, 300);
+                                            }, 3000); // Adjust the timing as needed
+
+                                            // Fetch updated data
+                                            fetchEmployeeData();
+                                        },
+                                        error: function(xhr, status, error) {
+                                            // Handle errors if any
+                                            console.error('Error deleting employee:', error);
+                                        }
+                                    });
+                                });
+
+                                $('#closeMessageBtn').on('click', function() {
                                     // Remove 'active' class for CSS animation
                                     $('#messagePopup .popup-content').removeClass('active');
 
@@ -658,23 +662,36 @@
                                     setTimeout(function() {
                                         $('#messagePopup').fadeOut();
                                     }, 300); // Adjust to match CSS transition duration
-                                }
-                            });
-                        }
+                                });
 
-                        // Initial call to fetch data
-                        fetchEmployeeData();
+                                $(window).on('click', function(event) {
+                                    if (event.target == $('#messagePopup')[0]) {
+                                        // Remove 'active' class for CSS animation
+                                        $('#messagePopup .popup-content').removeClass('active');
 
-                        // Polling data every 1 second
-                        setInterval(fetchEmployeeData, 1000);
+                                        // Wait a bit before hiding the popup
+                                        setTimeout(function() {
+                                            $('#messagePopup').fadeOut();
+                                        }, 300); // Adjust to match CSS transition duration
+                                    }
+                                });
+                            }
 
-                        // Initial setup of delete button event listeners
-                        initializeDeleteButtons();
-                    });
-                </script>
+                            // Initial call to fetch data
+                            fetchEmployeeData();
+
+                            // Polling data every 1 second
+                            setInterval(fetchEmployeeData, 1000);
+
+                            // Initial setup of delete button event listeners
+                            initializeDeleteButtons();
+                        });
+                    </script>
+                </div>
+
             </div>
         </div>
-    </div>
+    @endif
 </body>
 
 </html>

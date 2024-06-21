@@ -54,16 +54,6 @@
     @endif
 
     <div class="mb-3">
-        <label for="department" class="form-label">Department</label>
-        <input type="text" class="form-control" id="department" name="department" value="{{ old('department', $user->department) }}">
-    </div>
-
-    <div class="mb-3">
-        <label for="position" class="form-label">Position</label>
-        <input type="text" class="form-control" id="position" name="position" value="{{ old('position', $user->position) }}">
-    </div>
-
-    <div class="mb-3">
         <label for="phone_number" class="form-label">Phone Number</label>
         <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}">
     </div>
