@@ -67,7 +67,6 @@
         <span class="close-btn" id="closeAvatarPopup">&times;</span>
         <h2>Change Avatar</h2>
         @php
-            $defaultPhoto = 'images/default_profile.png';
             if (Auth::user()->gender == 'Male') {
                 $defaultPhoto = 'images/user_profile/Default Male Photo Profile.jpg';
             } elseif (Auth::user()->gender == 'Female') {
