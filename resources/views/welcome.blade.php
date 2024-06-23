@@ -1,44 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Saunders Robot Company</title>
-    <link rel="shortcut icon" href="{{URL::asset("/images/favicon/Saunders_Favicon.ico")}}" type="image/x-icon">
+@extends('layouts.main')
+@section('css')
     <link rel="stylesheet" href="{{URL::asset("/css/welcome.css")}}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
-    {{-- Navigation Bar --}}
-    <nav class="nav welcome">
-        <ul>
-            <li>
-                <a href="#" class="nav-logo"><img src="{{ URL::asset('/images/welcome_page/Saunders Logo.png') }}" alt="Saunders Co." height="40"></a>
-            </li>
-            <div class="nav-center">
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Berita</a></li>
-                <li><a href="#">Inspirasi</a></li>
-                <li><a href="#">Finansial</a></li>
-                <li><a href="#">Survei</a></li>
-                <li><a href="#">WFH</a></li>
-                <li><a href="#">Info IT</a></li>
-            </div>
-            <li>
-                <a href="{{ route('login') }}" class="nav-login">Login</a>
-            </li>
-        </ul>
-    </nav>
-
+@endsection
+@section('wrapper')
     {{-- Info Main (Login & Register Area) --}}
     <div class="info main">
         <h2 class="title"><span class="highlight">Saunders</span> Robot Company</h2>
         <p class="subTitle">Empowering Industry with Innovation</p>
-        <div class="userButton">
-            <a href="{{ route('login') }}" id="login">Login</a>
-            <a href="{{ route('register') }}" id="register">Register</a>
-        </div>
     </div>
 
     {{-- Company Short Profile Section --}}
@@ -71,5 +39,4 @@
             </p>
         </div>
     </div>
-</body>
-</html>
+@endsection

@@ -26,14 +26,16 @@ Route::get('/', function () {
 Route::get('/dashboard', [EmployeeController::class, 'web_index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/employees/create', [EmployeeController::class, 'create'])->middleware(['auth', 'verified'])->name('create');
 Route::post('/employees', [EmployeeController::class, 'store'])->middleware(['auth', 'verified'])->name('store');
-Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy'])->middleware(['auth', 'verified'])->name('employees.destroy');
 
-Route::get('/employees/list', [EmployeeController::class, 'list'])->name('employees.list');
+Route::get('/employees/list', [EmployeeController::class, 'list'])->middleware(['auth', 'verified'])->name('employees.list');
 
+Route::get('/employee', [EmployeeController::class, 'web_employee'])->middleware(['auth', 'verified'])->name('employee');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/delete-avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.delete-avatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

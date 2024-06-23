@@ -25,7 +25,7 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
         $user = $request->user();
 
@@ -41,17 +41,23 @@ class ProfileController extends Controller
             $user->profile_photo_path = $path;
         }
 
-        // Fill user with validated data and check for email changes
-        $user->fill($request->validated());
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
         // Save user data
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('employee')->with('status', 'profile-updated');
+    }
+
+    public function deleteAvatar(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if ($user->profile_photo_path) {
+            Storage::disk('public')->delete($user->profile_photo_path);
+            $user->profile_photo_path = null;
+            $user->save();
+        }
+
+        return back()->with('status', 'avatar-deleted');
     }
 
     /**

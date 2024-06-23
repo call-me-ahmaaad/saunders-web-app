@@ -1,0 +1,72 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    height: 663px;
+    justify-content: center;
+}
+
+form{
+    width: 500px;
+    background-color: ghostwhite;
+    padding: 20px 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 65, 211);
+}
+
+h2{
+    width: 100%;
+    text-align: center;
+
+}
+
+#step1 .form-group, button{
+    margin: 10px 0;
+}
+
+#step1 .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+#step1 label, input{
+    margin: 7px 0;
+}
+
+#step1 input{
+    height: 30px;
+}
+
+#step2 .form-group, button{
+    margin: 10px 0;
+}
+
+#step2 .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+#step2 label, input{
+    margin: 7px 0;
+}
+
+#step2 input, select{
+    height: 30px;
+}
+
+#step2 .form-group.gender{
+    display: flex;
+    flex-direction: column;
+}
+
+#step2 .form-group.gender label{
+    margin: 0;
+}
+#step2 .form-check.form-check-inline{
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+}
+
+#step2 .form-check.form-check-inline input{
+    margin-right: 10px;
+}
