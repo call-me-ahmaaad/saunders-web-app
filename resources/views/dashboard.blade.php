@@ -16,14 +16,17 @@
             <div class="card data">
                 <div class="content">
                     @php
+                        $user = Auth::user();
                         $defaultPhoto = 'images/default_profile.png';
-                        if (Auth::user()->gender == 'Male') {
-                            $defaultPhoto = 'images/user_profile/Default Male Photo Profile.jpg';
-                        } elseif (Auth::user()->gender == 'Female') {
-                            $defaultPhoto = 'images/user_profile/Default Female Photo Profile.jpg';
+                        if ($user) {
+                            if ($user->gender == 'Male') {
+                                $defaultPhoto = 'images/user_profile/Default Male Photo Profile.jpg';
+                            } elseif ($user->gender == 'Female') {
+                                $defaultPhoto = 'images/user_profile/Default Female Photo Profile.jpg';
+                            }
                         }
                     @endphp
-                    <img src="{{ Auth::user()->profile_photo_path ? asset('storage/' . Auth::user()->profile_photo_path) : asset($defaultPhoto) }}"
+                    <img src="{{ $user && $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset($defaultPhoto) }}"
                         alt="User Profile" height="100px">
                     <div class="profile">
                         <h2 class="name">{{ Auth::user()->name }}</h2>
@@ -310,7 +313,7 @@
                         </div>
                     </div>
 
-                <script>
+                    <script>
                         $(document).ready(function() {
                             // Initialize DataTables with pagination settings
                             var table = $('#list').DataTable({
