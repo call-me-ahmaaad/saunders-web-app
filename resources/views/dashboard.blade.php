@@ -25,7 +25,7 @@
                             }
                         }
                     @endphp
-                    <img src="{{ $user && $user->profile_photo_path ? asset('storage/' . $user->profile_photo_path) : asset($defaultPhoto) }}"
+                    <img src="{{ $user && $user->profile_photo_path ? asset($user->profile_photo_path) : asset($defaultPhoto) }}"
                         alt="User Profile" height="100px">
                     <div class="profile">
                         <h2 class="name">{{ Auth::user()->name }}</h2>
@@ -334,7 +334,6 @@
 
                                         table.clear(); // Clear the current data in the table
                                         response.employees.forEach(function(employee) {
-                                            let defaultPhoto = 'images/default_profile.png';
                                             if (employee.gender == 'Male') {
                                                 defaultPhoto =
                                                     'images/user_profile/Default Male Photo Profile.jpg';
@@ -344,7 +343,8 @@
                                             }
 
                                             let profilePhoto = employee.profile_photo_path ?
-                                                '{{ asset('storage') }}/' + employee.profile_photo_path :
+                                                '{{ URL::asset('') }}' + employee
+                                                .profile_photo_path :
                                                 '{{ URL::asset('') }}' + defaultPhoto;
 
                                             let employeeRow = `
