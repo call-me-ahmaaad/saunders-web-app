@@ -244,7 +244,7 @@
                                         <span>
                                             @if ($employee->profile_photo_path)
                                                 <img class="employeeProfile"
-                                                    src="{{ asset('storage/' . $employee->profile_photo_path) }}"
+                                                    src="{{ asset($employee->profile_photo_path) }}"
                                                     alt="{{ $employee->name }}" height="45px">
                                             @else
                                                 @php
